@@ -85,7 +85,7 @@ export const envOverlay = (environment: string, options: IEnvOverlayOptions = {}
 
   // Bailout early - remember disallow can be an array also
   if (typeof settings.disallow === 'string') {
-    if (env === settings.disallow) {
+    if (env === settings.disallow || !env) {
       return
     }
   } else {
