@@ -9,7 +9,11 @@ Lightweight, easy to use and easy to customize.
 
 **Examples of defaults**
 
-![Local Environment](/images/local.png) ![Development Environment](/images/development.png) ![Staging Environment](/images/staging.png) ![Demo Environment](/images/demo.png) ![Other Environment](/images/other.png)
+![Local Environment](/images/local.png) ![Development Environment](/images/development.png) ![Staging Environment](/images/staging.png) ![Demo Environment](/images/demo.png)
+
+**Examples of others**
+
+![Other Environment](/images/other.png)
 
 ### Installation
 
