@@ -11,7 +11,7 @@ interface IEnvOverlaySettings {
   disallow: string | string[]
   background: { [env: string]: string }
   color: string
-  onLoaded: (node: HTMLDivElement) => void
+  onLoaded?: (node: HTMLDivElement) => void
 }
 
 const defaultOptions: IEnvOverlaySettings = {
@@ -23,7 +23,6 @@ const defaultOptions: IEnvOverlaySettings = {
     demo: '#006A8E',
   },
   color: '#FFFFFF',
-  onLoaded: () => {},
 }
 
 // The nitty gritty function that actually creates the DOM nodes and styles

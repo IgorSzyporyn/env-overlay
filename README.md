@@ -1,18 +1,14 @@
-# env-overlay v.1.0.4
+# env-overlay
 
-Dependency free, lightweight (bundle is 4.45kb unzipped) and simple module that will display the environment of the application as a fixed overlay.
+Easily see what environment you are viewing your application in via a small overlay - comes with built-in visual, but can easily be overridden and customized either via CSS or options in your code.
 
-## Installation and usage
+Dependency free, lightweight, simple and with embedded TypeScript support _(no need to look for @types/env-overlay)_
 
-First install the module with either yarn or npm.
+## Installation
 
-**Using npm:**
+`$ npm install env-overlay --save`
 
-`npm install env-overlay --save`
-
-Then import or require env-overlay in your code, and invoke the funcationality from the envOverlay function by as a minimum send the environment string variable.
-
-**Using import:**
+## Usage
 
     import { envOverlay } from 'env-overlay'
 
@@ -20,56 +16,40 @@ Then import or require env-overlay in your code, and invoke the funcationality f
     // And that it is accessible via process.env
     envOverlay(process.env.NODE_ENV)
 
-The module has its own typescript definitions
-_So no need to look for @types/env-overlay_
+## Signature
+
+`(environment: string, options?: IEnvOverlayOptions) => void`
+
+[Click here to view IEnvOverlayOptions](#IEnvOverlayOptions)
 
 ## Options
 
-The module takes 2 arguments, where the environment string is required, and the second options argument is optional.
+### options.disallow
 
-`envOverlay(env: string, options?: IEnvOverlayOptions)`
+_String or array of strings_ - Name(s) of environments to exclude usage of env-overlay.
+The module will bailout early if the the environment name given matches the string, or one of the strings, given.
+**Default**: "production"
 
-Where the default options looks like this
+### options.background
 
-```javascript
-  {
-    disallow: 'production',
-    background: {
-      local: '#780074',
-      development: '#FF990F',
-      staging: '#008E2A',
-      demo: '#006A8E',
-    },
-    color: '#FFFFFF',
-    onLoaded: () => {}
-  }
-```
+_Object of key (env name) - value (any valid CSS color)_ - A map of background colors for given environment names.
+There are default colors for the environments _"local"_, _"development"_, _"staging"_ and _"demo"_.
 
-### disallow
-
-_Environment names to disable the module for_
-The default bailout early environment name is "production" (case insensitive) via the disallow option - which can also be an array.
-
-### background
-
-_The hex color of the background_
-And as you can see, there is a pre-defined color scheme as of background for the environments _"local"_, _"development"_, _"staging"_ and _"demo"_.
-
-If you do not provide a background option for any other environment name, then the module will assign a background color calculated from the contents of the string for a reliable outcome each time.
+Should an environment not have a matching background color key/value provided in options, then a color will be assigned based on the environment name.
 
 [All credit goes to Edd Turtle for this feature](https://www.designedbyaturtle.co.uk/2014/convert-string-to-hexidecimal-colour-with-javascript-vanilla/)
 
-### color
+### options.color
 
-_The hex color of the text_
-Default is white.
+_Object of key (env name) - value (any valid CSS color)_ - A map of text colors for given environment names.
+There are default colors for the environments _"local"_, _"development"_, _"staging"_ and _"demo"_.
 
-### onloaded
+### options.onloaded
 
 _Callback function for when the overlay is added to the DOM_
 When the overlay has been added to the DOM - then this callback option will fire, and return the root node of the overlay for your DOM manipulatory pleasure.
 
-### Options typescript interface
+### <a name="IEnvOverlayOptions"></a>Options typescript interface
 
 The typescript interface for the options (IEnvOverlayOptions) looks like this
 
