@@ -45,11 +45,13 @@ Where the default options looks like this
   }
 ```
 
-**disallow**
+### disallow
+
 _Environment names to disable the module for_
 The default bailout early environment name is "production" (case insensitive) via the disallow option - which can also be an array.
 
-**background**
+### background
+
 _The hex color of the background_
 And as you can see, there is a pre-defined color scheme as of background for the environments _"local"_, _"development"_, _"staging"_ and _"demo"_.
 
@@ -57,15 +59,17 @@ If you do not provide a background option for any other environment name, then t
 
 [All credit goes to Edd Turtle for this feature](https://www.designedbyaturtle.co.uk/2014/convert-string-to-hexidecimal-colour-with-javascript-vanilla/)
 
-**color**
+### color
+
 _The hex color of the text_
 Default is white.
 
-**onloaded**
+### onloaded
+
 _Callback function for when the overlay is added to the DOM_
 When the overlay has been added to the DOM - then this callback option will fire, and return the root node of the overlay for your DOM manipulatory pleasure.
 
-## **Options typescript interface**
+### Options typescript interface
 
 The typescript interface for the options (IEnvOverlayOptions) looks like this
 
@@ -81,10 +85,10 @@ export interface IEnvOverlayOptions {
 
 ## Visuals
 
-Here some visuals of the 4 different pre-defined environments
+Here some visuals of the 4 different pre-defined environmentsa and a specific one named "other"
 
-![Local Environment](/images/local.png)![Development Environment](/images/development.png)
-![Staging Environment](/images/staging.png)![Demo Environment](/images/demo.png)
-
-And here the default calculated background color if the environment name was "other"
+![Local Environment](/images/local.png)
+![Development Environment](/images/development.png)
+![Staging Environment](/images/staging.png)
+![Demo Environment](/images/demo.png)
 ![Other Environment](/images/other.png)
