@@ -1,6 +1,6 @@
 # env-overlay v.1.0.2
 
-Dependency free, lightweight and simple module that will display the environment of the application as a fixed overlay.
+Dependency free, lightweight (bundle is 4.45kb unzipped) and simple module that will display the environment of the application as a fixed overlay.
 
 ## Installation and usage
 
@@ -16,9 +16,9 @@ Then import or require env-overlay in your code, and invoke the funcationality f
 
     import { envOverlay } from 'env-overlay'
 
-    // Here assuming the environment variable APP_ENV is set
+    // Here assuming the environment variable NODE_ENV is set for sure
     // And that it is accessible via process.env
-    envOverlay(process.env.APP_ENV)
+    envOverlay(process.env.NODE_ENV)
 
 The module has its own typescript definitions
 _So no need to look for @types/env-overlay_
