@@ -107,23 +107,22 @@ export const envOverlay = (environment: string, options: IEnvOverlayOptions = {}
   }
 
   // Also bail out early - with a console.warn (if console exists) if no document
-  if (!document) {
-    console && console.warn && console.warn('env-overlay: There seems to be no DOM present')
-    return
+  if (document && document.addEventListener) {
+    // Wait until the DOM is ready to continue
+    document.addEventListener('DOMContentLoaded', () => {
+      // Create and return the DOM node
+      const node = createNode(env, settings)
+
+      // Append the DOM node to the body
+      document.body.appendChild(node)
+
+      // Fire the courtesy callback when things are done so the
+      // end user can do whatever with the DOM node delivered to him/her
+      settings.onLoaded && settings.onLoaded(node)
+    })
+  } else {
+    console && console.warn && console.warn('env-overlay: Either no DOM present, or not supported')
   }
-
-  // Wait until the DOM is ready to continue
-  document.addEventListener('DOMContentLoaded', () => {
-    // Create and return the DOM node
-    const node = createNode(env, settings)
-
-    // Append the DOM node to the body
-    document.body.appendChild(node)
-
-    // Fire the courtesy callback when things are done so the
-    // end user can do whatever with the DOM node delivered to him/her
-    settings.onLoaded && settings.onLoaded(node)
-  })
 
   return
 }
