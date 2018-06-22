@@ -11,7 +11,7 @@ Lightweight, easy to use and easy to customize.
 
 ![Local Environment](/images/local.png) ![Development Environment](/images/development.png) ![Staging Environment](/images/staging.png) ![Demo Environment](/images/demo.png)
 
-**Examples of others**
+**Calculated result for "other"**
 
 ![Other Environment](/images/other.png)
 
