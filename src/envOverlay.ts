@@ -4,14 +4,14 @@ export interface IEnvOverlayOptions {
   disallow?: string | string[]
   background?: { [env: string]: string }
   color?: string
-  onLoaded?: (node: HTMLElement) => void
+  onLoaded?: (node: HTMLDivElement) => void
 }
 
 interface IEnvOverlaySettings {
   disallow: string | string[]
   background: { [env: string]: string }
   color: string
-  onLoaded: (node: HTMLElement) => void
+  onLoaded: (node: HTMLDivElement) => void
 }
 
 const defaultOptions: IEnvOverlaySettings = {
@@ -28,8 +28,9 @@ const defaultOptions: IEnvOverlaySettings = {
 
 // The nitty gritty function that actually creates the DOM nodes and styles
 // required for the environment overlay
-const createNode = (env: string, settings: IEnvOverlaySettings) => {
+const createNode = (environment: string, settings: IEnvOverlaySettings) => {
   // Find the background color and text color to use
+  const env = environment.toLowerCase()
   const background = settings.background[env] || envToHexColor(env)
   const color = settings.color
 
@@ -78,12 +79,27 @@ const createNode = (env: string, settings: IEnvOverlaySettings) => {
   return DOMWrapperElement
 }
 
-export const envOverlay = (env: string, options: IEnvOverlayOptions = {}) => {
+export const envOverlay = (environment: string, options: IEnvOverlayOptions = {}) => {
   const settings: IEnvOverlaySettings = { ...{}, ...defaultOptions, ...options }
+  const env = environment.toLowerCase()
 
-  // Bailout early
-  if (env === settings.disallow) {
-    return
+  // Bailout early - remember disallow can be an array also
+  if (typeof settings.disallow === 'string') {
+    if (env === settings.disallow) {
+      return
+    }
+  } else {
+    let disallow = false
+
+    settings.disallow.forEach(item => {
+      if (env === item.toLowerCase()) {
+        disallow = true
+      }
+    })
+
+    if (disallow) {
+      return
+    }
   }
   // Wait until the DOM is ready to continue
   document.addEventListener('DOMContentLoaded', () => {
