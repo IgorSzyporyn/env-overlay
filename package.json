@@ -1,0 +1,67 @@
+{
+  "name": "env-overlay",
+  "version": "0.0.1",
+  "description": "Overlay to show the environment you are currently viewing",
+  "main": "dist/index.js",
+  "module": "dist/env-overlay.es6.js",
+  "typings": "dist/index.d.ts",
+  "author": "Igor Szyporyn",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/jest": "^23.1.0",
+    "cross-env": "^5.2.0",
+    "jest": "^23.1.0",
+    "jest-cli": "^23.1.0",
+    "lint-staged": "^7.2.0",
+    "npm-run-all": "^4.1.3",
+    "prettier": "^1.13.5",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.59.0",
+    "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-filesize": "1.4.2",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-uglify": "^3.0.0",
+    "size-limit": "^0.18.2",
+    "ts-jest": "^22.4.6",
+    "tsc-watch": "^1.0.22",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {},
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "prettier --config ./.prettierrc --write",
+      "git add"
+    ]
+  },
+  "size-limit": [{
+      "path": "./dist/index.js",
+      "limit": "1.2 kB"
+    },
+    {
+      "path": "./dist/env-overlay.es6.js",
+      "limit": "1.2 kB"
+    },
+    {
+      "path": "./dist/env-overlay.umd.production.js",
+      "limit": "1 kB"
+    }
+  ],
+  "scripts": {
+    "test": "jest --env=jsdom",
+    "test:watch": "npm run test -- --watch",
+    "start": "rimraf dist && mkdir dist && cp ./index.js ./dist/index.js && NODE_ENV=development rollup -w -c | tsc -w -p tsconfig.base.json",
+    "prebuild": "rimraf dist",
+    "build": "cross-env NODE_ENV=production tsc -p tsconfig.base.json  && rollup -c && rimraf compiled && cp ./index.js ./dist/index.js",
+    "prepublish": "npm run build",
+    "format": "prettier --config ./.prettierrc --write 'src/**/*' 'test/**/*' 'README.md'",
+    "precommit": "lint-staged",
+    "size": "size-limit"
+  }
+}
