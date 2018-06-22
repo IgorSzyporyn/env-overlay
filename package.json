@@ -1,7 +1,7 @@
 {
   "name": "env-overlay",
   "version": "1.0.5",
-  "description": "Overlay to show the environment you are currently viewing",
+  "description": "Easily see what environment you are viewing your application in via a small overlay",
   "main": "dist/index.js",
   "module": "dist/env-overlay.es6.js",
   "typings": "dist/index.d.ts",
@@ -10,6 +10,14 @@
   "repository": "IgorSzyporyn/env-overlay",
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "env",
+    "environment",
+    "overlay",
+    "typescript",
+    "informative",
+    "notification"
   ],
   "devDependencies": {
     "@types/jest": "^23.1.0",
@@ -41,8 +49,7 @@
       "git add"
     ]
   },
-  "size-limit": [
-    {
+  "size-limit": [{
       "path": "./dist/index.js",
       "limit": "1.2 kB"
     },
