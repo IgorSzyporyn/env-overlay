@@ -1,12 +1,13 @@
 {
   "name": "env-overlay",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Overlay to show the environment you are currently viewing",
   "main": "dist/index.js",
   "module": "dist/env-overlay.es6.js",
   "typings": "dist/index.d.ts",
-  "author": "Igor Szyporyn",
+  "author": "Igor Szyporyn <igor.szyporyn@gmail.com>",
   "license": "MIT",
+  "repository": "IgorSzyporyn/env-overlay",
   "files": [
     "dist"
   ],
