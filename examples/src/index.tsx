@@ -5,7 +5,7 @@ import App from './App'
 import './index.css'
 import registerServiceWorker from './registerServiceWorker'
 
-envOverlay('local')
+envOverlay('other')
 
 ReactDOM.render(<App />, document.getElementById('root') as HTMLElement)
 registerServiceWorker()
