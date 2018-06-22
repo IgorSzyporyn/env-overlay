@@ -1,13 +1,13 @@
 # env-overlay
 
-Easily see what environment you are viewing your application in via a small overlay - comes with built-in visual, but can easily be overridden and customized either via CSS or options in your code.
+Easily see what environment you are viewing your application in via a small overlay.
 
-Lightweight, easy to use and easy to override or customize.
+Lightweight, easy to use and easy to customize.
 
-- Has built in visuals for "local", "development", "staging" & "demo"
-- Calculates a background and text color for other environment names
-- Lets user override via options in code, or CSS outside
+- Comes with built-in visual, but can easily be customized via options.
+- Calculates visuals for other environment names than the built-in - if none are provided via options
 
+**Examples of defaults**
 ![Local Environment](/images/local.png) ![Development Environment](/images/development.png) ![Staging Environment](/images/staging.png) ![Demo Environment](/images/demo.png) ![Other Environment](/images/other.png)
 
 ### Installation
@@ -45,15 +45,14 @@ Should an environment not have a matching background color key/value provided in
 
 [All credit goes to Edd Turtle for this feature](https://www.designedbyaturtle.co.uk/2014/convert-string-to-hexidecimal-colour-with-javascript-vanilla/)
 
-#### options.color
+#### options.text
 
 _Object of key (env name) - value (any valid CSS color)_ - A map of text colors for given environment names.
 There are default colors for the environments _"local"_, _"development"_, _"staging"_ and _"demo"_.
 
-#### options.onloaded
+#### options.onLoaded
 
-_Callback function for when the overlay is added to the DOM_
-When the overlay has been added to the DOM - then this callback option will fire, and return the root node of the overlay for your DOM manipulatory pleasure.
+_Function_ - Has the wrapper DOM node of the overlay as its argument for your DOM manipulatory pleasure.
 
 ### <a name="IEnvOverlayOptions"></a>IEnvOverlayOptions interface
 
@@ -62,9 +61,8 @@ The typescript interface for the options (IEnvOverlayOptions) looks like this
 ```typescript
 export interface IEnvOverlayOptions {
   disallow?: string | string[]
-  // The "env" key is the name of the environment (lowercase will be forced)
   background?: { [env: string]: string }
-  color?: string
+  text?: { [env: string]: string }
   onLoaded?: (node: HTMLDivElement) => void
 }
 ```

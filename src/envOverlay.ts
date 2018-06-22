@@ -3,14 +3,14 @@ import { envToHexColor } from './envToHexColor'
 export interface IEnvOverlayOptions {
   disallow?: string | string[]
   background?: { [env: string]: string }
-  color?: string
+  text?: { [env: string]: string }
   onLoaded?: (node: HTMLDivElement) => void
 }
 
 interface IEnvOverlaySettings {
   disallow: string | string[]
   background: { [env: string]: string }
-  color: string
+  text: { [env: string]: string }
   onLoaded?: (node: HTMLDivElement) => void
 }
 
@@ -22,7 +22,12 @@ const defaultOptions: IEnvOverlaySettings = {
     staging: '#008E2A',
     demo: '#006A8E',
   },
-  color: '#FFFFFF',
+  text: {
+    local: '#FFFFFF',
+    development: '#FFFFFF',
+    staging: '#FFFFFF',
+    demo: '#FFFFFF',
+  },
 }
 
 // The nitty gritty function that actually creates the DOM nodes and styles
@@ -31,7 +36,7 @@ const createNode = (environment: string, settings: IEnvOverlaySettings) => {
   // Find the background color and text color to use
   const env = environment.toLowerCase()
   const background = settings.background[env] || envToHexColor(env)
-  const color = settings.color
+  const color = settings.text[env] || '#FFFFFF'
 
   const DOMWrapperElement = document.createElement('div')
   const DomTextElement = document.createElement('div')
@@ -100,6 +105,13 @@ export const envOverlay = (environment: string, options: IEnvOverlayOptions = {}
       return
     }
   }
+
+  // Also bail out early - with a console.warn (if console exists) if no document
+  if (!document) {
+    console && console.warn && console.warn('env-overlay: There seems to be no DOM present')
+    return
+  }
+
   // Wait until the DOM is ready to continue
   document.addEventListener('DOMContentLoaded', () => {
     // Create and return the DOM node
