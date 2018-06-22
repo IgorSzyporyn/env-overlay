@@ -8,6 +8,7 @@ Lightweight, easy to use and easy to customize.
 - Calculates visuals for other environment names than the built-in - if none are provided via options
 
 **Examples of defaults**
+
 ![Local Environment](/images/local.png) ![Development Environment](/images/development.png) ![Staging Environment](/images/staging.png) ![Demo Environment](/images/demo.png) ![Other Environment](/images/other.png)
 
 ### Installation
