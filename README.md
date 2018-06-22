@@ -1,4 +1,4 @@
-# env-overlay v.1.0.2
+# env-overlay v.1.0.4
 
 Dependency free, lightweight (bundle is 4.45kb unzipped) and simple module that will display the environment of the application as a fixed overlay.
 
