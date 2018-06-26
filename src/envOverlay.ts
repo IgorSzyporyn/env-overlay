@@ -30,8 +30,24 @@ const defaultOptions: IEnvOverlaySettings = {
   },
 }
 
-// The nitty gritty function that actually creates the DOM nodes and styles
-// required for the environment overlay
+const getDisallowStatus = (env: string, settings: IEnvOverlaySettings) => {
+  let disallow = false
+
+  if (typeof settings.disallow === 'string') {
+    if (env === settings.disallow || !env) {
+      disallow = true
+    }
+  } else {
+    settings.disallow.forEach(item => {
+      if (env === item.toLowerCase()) {
+        disallow = true
+      }
+    })
+  }
+
+  return disallow
+}
+
 const createNode = (environment: string, settings: IEnvOverlaySettings) => {
   // Find the background color and text color to use
   const env = environment.toLowerCase()
@@ -83,46 +99,23 @@ const createNode = (environment: string, settings: IEnvOverlaySettings) => {
   return DOMWrapperElement
 }
 
-export const envOverlay = (environment: string, options: IEnvOverlayOptions = {}) => {
-  const settings: IEnvOverlaySettings = { ...{}, ...defaultOptions, ...options }
+export const envOverlay = (environment: string, options?: IEnvOverlayOptions) => {
+  const settings: IEnvOverlaySettings = { ...defaultOptions, ...options }
   const env = environment.toLowerCase()
+  const sufficientDOM: boolean = !!(document && document.addEventListener)
+  const disallow = getDisallowStatus(env, settings)
 
-  // Bailout early - remember disallow can be an array also
-  if (typeof settings.disallow === 'string') {
-    if (env === settings.disallow || !env) {
-      return
-    }
-  } else {
-    let disallow = false
-
-    settings.disallow.forEach(item => {
-      if (env === item.toLowerCase()) {
-        disallow = true
-      }
-    })
-
-    if (disallow) {
-      return
-    }
+  if (!sufficientDOM || disallow) {
+    return
   }
 
-  // Also bail out early - with a console.warn (if console exists) if no document
-  if (document && document.addEventListener) {
-    // Wait until the DOM is ready to continue
-    document.addEventListener('DOMContentLoaded', () => {
-      // Create and return the DOM node
-      const node = createNode(env, settings)
+  document.addEventListener('DOMContentLoaded', () => {
+    const node = createNode(env, settings)
 
-      // Append the DOM node to the body
-      document.body.appendChild(node)
+    document.body.appendChild(node)
 
-      // Fire the courtesy callback when things are done so the
-      // end user can do whatever with the DOM node delivered to him/her
-      settings.onLoaded && settings.onLoaded(node)
-    })
-  } else {
-    console && console.warn && console.warn('env-overlay: Either no DOM present, or not supported')
-  }
+    settings.onLoaded && settings.onLoaded(node)
+  })
 
   return
 }
