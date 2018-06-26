@@ -22,6 +22,7 @@
   "devDependencies": {
     "@types/jest": "^23.1.0",
     "cross-env": "^5.2.0",
+    "dom-testing-library": "^2.6.2",
     "jest": "^23.1.0",
     "jest-cli": "^23.1.0",
     "lint-staged": "^7.2.0",
