@@ -2,7 +2,7 @@ import { stringToHexColor } from './stringToHexColor'
 
 export const envToHexColor = (env: string) => {
   const environment = env.toLowerCase()
-  let hexColor = '#000000'
+  let hexColor = ''
 
   switch (environment) {
     case 'local':

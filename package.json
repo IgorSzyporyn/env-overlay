@@ -50,8 +50,7 @@
       "git add"
     ]
   },
-  "size-limit": [
-    {
+  "size-limit": [{
       "path": "./dist/index.js",
       "limit": "1.2 kB"
     },
@@ -64,6 +63,26 @@
       "limit": "1 kB"
     }
   ],
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "automock": false,
+    "setupFiles": [],
+    "testPathIgnorePatterns": [
+      "./build",
+      "./examples"
+    ]
+  },
   "scripts": {
     "test": "jest --env=jsdom",
     "test:watch": "npm run test -- --watch",
