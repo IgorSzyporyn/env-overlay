@@ -1,6 +1,7 @@
 import { envToHexColor } from './envToHexColor'
 
 export interface IEnvOverlayOptions {
+  corner?: 'left' | 'right'
   disallow?: string | string[]
   background?: { [env: string]: string }
   text?: { [env: string]: string }
@@ -8,6 +9,7 @@ export interface IEnvOverlayOptions {
 }
 
 interface IEnvOverlaySettings {
+  corner?: 'left' | 'right'
   disallow: string | string[]
   background: { [env: string]: string }
   text: { [env: string]: string }
@@ -16,6 +18,7 @@ interface IEnvOverlaySettings {
 
 const defaultOptions: IEnvOverlaySettings = {
   disallow: 'production',
+  corner: 'right',
   background: {
     local: '#780074',
     development: '#FF990F',
@@ -37,6 +40,7 @@ const createNode = (environment: string, settings: IEnvOverlaySettings) => {
   const env = environment.toLowerCase()
   const background = settings.background[env] || envToHexColor(env)
   const color = settings.text[env] || '#FFFFFF'
+  const corner = settings.corner || 'right'
 
   const DOMWrapperElement = document.createElement('div')
   const DomTextElement = document.createElement('div')
@@ -56,12 +60,12 @@ const createNode = (environment: string, settings: IEnvOverlaySettings) => {
     -ms-flex-pack: center;
     -webkit-box-pack: center;
     position: fixed;
-    right: -70px;
+    ${corner === 'left' ? 'left: -70px;' : 'right: -70px;'}
     text-transform: uppercase;
     top: -70px;
-    transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
+    transform: rotate(${corner === 'left' && '-'}45deg);
+    -ms-transform: rotate(${corner === 'left' && '-'}45deg);
+    -webkit-transform: rotate(${corner === 'left' && '-'}45deg);
     width: 140px;
     z-index: 99999;
   `
