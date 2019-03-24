@@ -1,5 +1,7 @@
 # env-overlay
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/IgorSzyporyn/env-overlay.svg)](https://greenkeeper.io/)
+
 Easily see what environment you are viewing your application in via a small overlay.
 
 Lightweight, easy to use and easy to customize.
