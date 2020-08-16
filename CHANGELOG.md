@@ -6,5 +6,7 @@
 
 ##### Bug Fixes
 
-* **package:**  removed security issue by updating commitlint config (8820d6e6)
+* **package:**
+  *  added generate-changelog (db1c83a6)
+  *  removed security issue by updating commitlint config (8820d6e6)
 
