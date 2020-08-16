@@ -1,26 +1,23 @@
 import commonjs from '@rollup/plugin-commonjs'
-import filesize from 'rollup-plugin-filesize';
-import replace from '@rollup/plugin-replace';
+import filesize from 'rollup-plugin-filesize'
+import replace from '@rollup/plugin-replace'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import sourceMaps from 'rollup-plugin-sourcemaps';
-import { uglify } from "rollup-plugin-uglify"
-import pkg from './package.json';
+import sourceMaps from 'rollup-plugin-sourcemaps'
+import { uglify } from 'rollup-plugin-uglify'
+import pkg from './package.json'
 
-const input = './compiled/index.js';
-const external = [];
+const input = './compiled/index.js'
+const external = []
 
-const buildUmd = ({
-  env
-}) => ({
+const buildUmd = ({ env }) => ({
   input,
   external,
   output: {
     name: 'envOverlay',
     format: 'umd',
     sourcemap: true,
-    file: env === 'production' ?
-      `./dist/env-overlay.umd.${env}.js` : `./dist/env-overlay.umd.${env}.js`,
-    exports: 'named'
+    file: env === 'production' ? `./dist/env-overlay.umd.${env}.js` : `./dist/env-overlay.umd.${env}.js`,
+    exports: 'named',
   },
 
   plugins: [
@@ -35,30 +32,30 @@ const buildUmd = ({
     sourceMaps(),
     env === 'production' && filesize(),
     env === 'production' &&
-    uglify({
-      output: {
-        comments: false
-      },
-      compress: {
-        keep_infinity: true,
-        pure_getters: true,
-      },
-      warnings: true,
-      toplevel: false,
-    }),
+      uglify({
+        output: {
+          comments: false,
+        },
+        compress: {
+          keep_infinity: true,
+          pure_getters: true,
+        },
+        warnings: true,
+        toplevel: false,
+      }),
   ],
-});
+})
 
-const buildCjs = ({
-  env
-}) => ({
+const buildCjs = ({ env }) => ({
   input,
   external: external.concat(Object.keys(pkg.dependencies)),
-  output: [{
-    file: `./dist/${pkg.name}.cjs.${env}.js`,
-    format: 'cjs',
-    sourcemap: true,
-  }, ],
+  output: [
+    {
+      file: `./dist/${pkg.name}.cjs.${env}.js`,
+      format: 'cjs',
+      sourcemap: true,
+    },
+  ],
   plugins: [
     nodeResolve(),
     replace({
@@ -72,21 +69,22 @@ const buildCjs = ({
 
 export default [
   buildUmd({
-    env: 'production'
+    env: 'production',
   }),
   buildUmd({
-    env: 'development'
+    env: 'development',
   }),
   buildCjs({
-    env: 'production'
+    env: 'production',
   }),
   buildCjs({
-    env: 'development'
+    env: 'development',
   }),
   {
     input,
     external: external.concat(Object.keys(pkg.dependencies)),
-    output: [{
+    output: [
+      {
         file: pkg.module,
         format: 'es',
         sourcemap: true,
@@ -97,11 +95,6 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [
-      nodeResolve(),
-
-      sourceMaps(),
-      filesize(),
-    ],
+    plugins: [nodeResolve(), sourceMaps(), filesize()],
   },
-];
+]
