@@ -91,8 +91,8 @@ The typescript interface for the options (IEnvOverlayOptions) looks like this
 export interface IEnvOverlayOptions {
   corner?: 'left' | 'right'
   disallow?: string | string[]
-  background?: { [env: string]: string }
-  text?: { [env: string]: string }
+  background?: { [key: string]: string }
+  text?: { [key: string]: string }
   onLoaded?: (node: HTMLDivElement) => void
 }
 ```
