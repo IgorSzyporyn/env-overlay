@@ -1,6 +1,6 @@
-#### 1.0.11 (2020-08-16)
+#### 1.0.12 (2020-08-16)
 
 ##### Documentation Changes
 
-* **readme:**  added missing option and structured readme ([6aa04c69](https://github.com/IgorSzyporyn/env-overlay/commit/6aa04c69135f728f9b7d81f4a8ff97c71050b0d7))
+* **readme:**  better options explanations ([d3a44435](https://github.com/IgorSzyporyn/env-overlay/commit/d3a444352b5c85065f9af60eb1c03a87cc45b7b1))
 
