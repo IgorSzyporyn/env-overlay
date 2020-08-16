@@ -1,7 +1,10 @@
-#### 1.0.9 (2020-08-16)
+#### 1.0.10 (2020-08-16)
+
+##### Documentation Changes
+
+* **readme:**  added filesize unzipped and zipped ([7f952a89](https://github.com/IgorSzyporyn/env-overlay/commit/7f952a89aa24eebbc01082c68d47582ae1a4660a))
 
 ##### Bug Fixes
 
-* **component:**  formatting and syntax fixes ([47345946](https://github.com/IgorSzyporyn/env-overlay/commit/47345946bb7619ce498fbc1ff3f31c8b937c07dc))
-* **package:**  missing file copying package ([b6e68ee1](https://github.com/IgorSzyporyn/env-overlay/commit/b6e68ee14d92e915dcb00f499fc3799ffbb0f4a5))
+* **example:**  installed env-overlay in example app ([09af6e88](https://github.com/IgorSzyporyn/env-overlay/commit/09af6e88bf0e188c2311f83088176d4fd3c5f871))
 
