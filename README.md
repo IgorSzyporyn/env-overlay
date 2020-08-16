@@ -50,18 +50,18 @@ envOverlay(process.env.NODE_ENV)
 
 ## Options
 
-### options.disallow
+### options.disallow - _String or array of strings_
 
-_String or array of strings_ - Name(s) of environments to exclude usage of env-overlay.
+Name(s) of environments to exclude usage of env-overlay.
 The module will bailout early if the the environment name given matches the string, or one of the strings, given.
 
 **Default**: "production"
 
 <p>&nbsp;</p>
 
-### options.background
+### options.background - _Object { key (env name): value (any valid CSS color) }_
 
-_Object of key (env name) - value (any valid CSS color)_ - A map of background colors for given environment names.
+A map of background colors for given environment names.
 There are default colors for the environments _"local"_, _"development"_, _"staging"_ and _"demo"_.
 
 Should an environment not have a matching background color key/value provided in options, then a color will be assigned based on the environment name.
@@ -70,16 +70,16 @@ Should an environment not have a matching background color key/value provided in
 
 <p>&nbsp;</p>
 
-### options.text
+### options.text - _Object { key (env name): value (any valid CSS color) }_
 
-_Object of key (env name) - value (any valid CSS color)_ - A map of text colors for given environment names.
+A map of text colors for given environment names.
 There are default colors for the environments _"local"_, _"development"_, _"staging"_ and _"demo"_.
 
 <p>&nbsp;</p>
 
-### options.onLoaded
+### options.onLoaded - _Function_
 
-_Function_ - Has the wrapper DOM node of the overlay as its argument for your DOM manipulatory pleasure.
+Has the wrapper DOM node of the overlay as its argument for your DOM manipulatory pleasure.
 
 <p>&nbsp;</p>
 
