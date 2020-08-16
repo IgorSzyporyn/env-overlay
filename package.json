@@ -26,6 +26,7 @@
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^3.9.0",
     "@typescript-eslint/parser": "^3.9.0",
+    "copyfiles": "^2.3.0",
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -69,8 +70,8 @@
     }
   ],
   "scripts": {
-    "start": "rimraf dist && mkdir dist && cp ./index.js ./dist/index.js && NODE_ENV=development rollup -w -c | tsc -w -p tsconfig.base.json",
-    "build": "NODE_ENV=production tsc -p tsconfig.base.json  && rollup -c && rimraf compiled && cp ./index.js ./dist/index.js",
+    "start": "rimraf dist && mkdir dist && copyfiles ./index.js ./dist/index.js && NODE_ENV=development rollup -w -c | tsc -w -p tsconfig.base.json",
+    "build": "NODE_ENV=production tsc -p tsconfig.base.json  && rollup -c && rimraf compiled && copyfiles ./index.js ./dist/index.js",
     "build:pre": "rimraf dist",
     "format": "prettier --write **/*.{js,ts,tsx}",
     "test": "npm run test:lint && npm run test:types",
