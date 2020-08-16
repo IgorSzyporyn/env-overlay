@@ -1,6 +1,6 @@
 {
   "name": "env-overlay",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Easily see what environment you are viewing your application in via a small overlay",
   "main": "dist/index.js",
   "module": "dist/env-overlay.es6.js",
