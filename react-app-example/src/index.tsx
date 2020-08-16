@@ -1,11 +1,16 @@
-import { envOverlay } from './dist'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { envOverlay } from './dist'
 
-envOverlay((process && process.env && process.env.NODE_ENV) || '')
+envOverlay(process.env.NODE_ENV, {
+  corner: 'left',
+  onLoaded: () => {
+    console.log('Im loaded now')
+  }
+})
 
 ReactDOM.render(
   <React.StrictMode>

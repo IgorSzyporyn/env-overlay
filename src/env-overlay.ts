@@ -1,7 +1,7 @@
 import { envToHexColor } from './env-to-hex-color'
 
 export interface IEnvOverlayOptions {
-  corner?: 'left' | 'right'
+  corner?: 'left' | 'right'
   disallow?: string | string[]
   background?: { [env: string]: string }
   text?: { [env: string]: string }
@@ -9,7 +9,7 @@ export interface IEnvOverlayOptions {
 }
 
 interface IEnvOverlaySettings {
-  corner?: 'left' | 'right'
+  corner?: 'left' | 'right'
   disallow: string | string[]
   background: { [env: string]: string }
   text: { [env: string]: string }
@@ -99,7 +99,7 @@ export const envOverlay = (environment: string, options: IEnvOverlayOptions = {}
   } else {
     let disallow = false
 
-    settings.disallow.forEach(item => {
+    settings.disallow.forEach((item) => {
       if (env === item.toLowerCase()) {
         disallow = true
       }
