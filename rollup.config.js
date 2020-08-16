@@ -1,13 +1,13 @@
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs'
 import filesize from 'rollup-plugin-filesize';
-import replace from 'rollup-plugin-replace';
-import resolve from 'rollup-plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import sourceMaps from 'rollup-plugin-sourcemaps';
-import uglify from 'rollup-plugin-uglify';
+import { uglify } from "rollup-plugin-uglify"
 import pkg from './package.json';
 
 const input = './compiled/index.js';
-const external = ['react', 'react-native'];
+const external = [];
 
 const buildUmd = ({
   env
@@ -24,14 +24,13 @@ const buildUmd = ({
   },
 
   plugins: [
-    resolve(),
+    nodeResolve(),
     replace({
       exclude: 'node_modules/**',
       'process.env.NODE_ENV': JSON.stringify(env),
     }),
     commonjs({
       include: /node_modules/,
-      namedExports: {},
     }),
     sourceMaps(),
     env === 'production' && filesize(),
@@ -45,7 +44,6 @@ const buildUmd = ({
         pure_getters: true,
       },
       warnings: true,
-      ecma: 5,
       toplevel: false,
     }),
   ],
@@ -62,7 +60,7 @@ const buildCjs = ({
     sourcemap: true,
   }, ],
   plugins: [
-    resolve(),
+    nodeResolve(),
     replace({
       exclude: 'node_modules/**',
       'process.env.NODE_ENV': JSON.stringify(env),
@@ -100,7 +98,7 @@ export default [
       },
     ],
     plugins: [
-      resolve(),
+      nodeResolve(),
 
       sourceMaps(),
       filesize(),
