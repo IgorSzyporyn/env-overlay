@@ -2,7 +2,7 @@
 
 Easily see what environment you are viewing your application in via a small overlay.
 
-Lightweight, easy to use and easy to customize.
+Lightweight (3.3K - 1.3K gzipped), easy to use and easy to customize.
 
 - Comes with built-in visual, but can easily be customized via options.
 - Calculates visuals for other environment names than the built-in - if none are provided via options
